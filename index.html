@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación</title>
+  <style>
+    :root{
+      --bg:#07060a;
+      --card:rgba(255,255,255,.06);
+      --text:#f4f1ff;
+      --muted:rgba(244,241,255,.75);
+      --gold:rgba(255, 203, 120, .95);
+      --line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background: radial-gradient(900px 600px at 70% 20%, rgba(255,200,120,.18), transparent 60%),
+                  radial-gradient(700px 500px at 20% 80%, rgba(255,140,170,.10), transparent 60%),
+                  linear-gradient(180deg, #06040a, #090611 45%, #05030a);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+      padding:24px;
+    }
+    .wrap{
+      width:min(720px, 100%);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      backdrop-filter: blur(10px);
+      border-radius:24px;
+      box-shadow: 0 18px 55px rgba(0,0,0,.55);
+      overflow:hidden;
+      position:relative;
+    }
+    .bokeh{
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(circle at 15% 35%, rgba(255,210,140,.22), transparent 24%),
+        radial-gradient(circle at 78% 22%, rgba(255,210,140,.25), transparent 26%),
+        radial-gradient(circle at 84% 66%, rgba(255,210,140,.16), transparent 28%),
+        radial-gradient(circle at 30% 78%, rgba(255,150,200,.12), transparent 30%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+    header{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      padding:26px 26px 10px;
+      position:relative;
+    }
+    .skull{
+      width:86px; height:86px;
+      border-radius:18px;
+      display:grid; place-items:center;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .skull img{
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .title{
+      line-height:1.1;
+    }
+    .title h1{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.2px;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+    }
+    .title p{margin:6px 0 0; color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:10px 0 0;}
+    .content{padding:22px 26px 26px; position:relative;}
+    .msg{
+      font-size:18px;
+      line-height:1.55;
+      margin:0 0 16px;
+      color:rgba(255,255,255,.92);
+    }
+    .details{
+      display:grid;
+      gap:10px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: rgba(0,0,0,.18);
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:10px 12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .k{color:var(--muted)}
+    .v{font-weight:600}
+    .cta{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    button{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:12px 16px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:700;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.26)}
+    button:active{transform: scale(.98)}
+    .primary{
+      background: linear-gradient(90deg, rgba(255,203,120,.28), rgba(255,150,200,.18));
+      border-color: rgba(255,203,120,.45);
+    }
+    .reveal{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px dashed rgba(255,203,120,.38);
+      background: rgba(255,203,120,.10);
+      display:none;
+    }
+    .reveal strong{color: rgba(255,235,200,.95)}
+    .footer{
+      padding:0 26px 24px;
+      color:rgba(255,255,255,.60);
+      font-size:13px;
+    }
+    .spark{
+      position:absolute;
+      width:8px; height:8px;
+      border-radius:999px;
+      pointer-events:none;
+      animation: pop 900ms ease-out forwards;
+      opacity:.9;
+    }
+    @keyframes pop{
+      0%{transform: translate(0,0) scale(1); opacity:.95}
+      100%{transform: translate(var(--dx), var(--dy)) scale(.2); opacity:0}
+    }
+    .hint{color:rgba(255,255,255,.65); font-size:14px; margin-top:10px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="bokeh"></div>
+
+    <header>
+      <div class="skull" title="Calavera mecha">
+        <img id="skullImg" alt="Calavera mecha" src="mecha-skull.png" />
+      </div>
+      <div class="title">
+        <h1>Hola, cariño… ❤️</h1>
+        <p>Esto es una invitación (casi) clasificada.</p>
+      </div>
+    </header>
+    <div class="hr"></div>
+
+    <section class="content">
+      <p class="msg">
+        Tengo un plan que no te voy a contar todavía.
+      </p>
+
+      <div class="details">
+        <div class="row">
+          <div class="k">📅 Fechas</div>
+          <div class="v">14/02 y 15/02</div>
+        </div>
+        <div class="row">
+          <div class="k">⏳ Hora</div>
+          <div class="v">clasificada como sorpresa (se revela al confirmar)</div>
+        </div>
+        <div class="row">
+          <div class="k">✨ Dress code</div>
+          <div class="v">como te sientas más hermosa ✨</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="primary" id="acceptBtn">✅ Acepto ser tu cita</button>
+        <button id="teaseBtn">👀 Dame una pista</button>
+      </div>
+
+      <div class="reveal" id="reveal">
+        <div><strong>Confirmado 😌❤️</strong></div>
+        <div style="margin-top:6px">
+          Tu ubicación y detalles serán enviados pronto…
+          <em>(prepárate porque te voy a enamorar más)</em>
+        </div>
+      </div>
+
+      <div class="hint" id="hint" style="display:none;">
+        Pista: no necesitas saber la hora… solo venir lista para una noche que se va a recordar. ✨
+      </div>
+    </section>
+
+    <div class="footer">
+      Tip: si no tienes imagen aún, cambia el <code>src</code> por una foto cualquiera, o deja <code>mecha-skull.png</code> en la misma carpeta.
+    </div>
+  </main>
+
+  <script>
+    const acceptBtn = document.getElementById('acceptBtn');
+    const reveal = document.getElementById('reveal');
+    const teaseBtn = document.getElementById('teaseBtn');
+    const hint = document.getElementById('hint');
+
+    function spark(e){
+      const n = 18;
+      for(let i=0;i<n;i++){
+        const s = document.createElement('div');
+        s.className = 'spark';
+        const rect = document.body.getBoundingClientRect();
+        s.style.left = (e.clientX - rect.left) + 'px';
+        s.style.top  = (e.clientY - rect.top) + 'px';
+        s.style.background = 'rgba(255,255,255,' + (0.35 + Math.random()*0.45) + ')';
+        const dx = (Math.random()*220 - 110).toFixed(0) + 'px';
+        const dy = (Math.random()*220 - 140).toFixed(0) + 'px';
+        s.style.setProperty('--dx', dx);
+        s.style.setProperty('--dy', dy);
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(), 950);
+      }
+    }
+
+    acceptBtn.addEventListener('click', (e) => {
+      spark(e);
+      reveal.style.display = 'block';
+      hint.style.display = 'none';
+      acceptBtn.textContent = '❤️ Confirmado';
+      acceptBtn.disabled = true;
+      acceptBtn.style.opacity = .9;
+      acceptBtn.style.cursor = 'default';
+    });
+
+    teaseBtn.addEventListener('click', () => {
+      hint.style.display = (hint.style.display === 'none') ? 'block' : 'none';
+    });
+  </script>
+</body>
+</html>
